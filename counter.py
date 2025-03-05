@@ -25,8 +25,5 @@ lbl_value.grid(row=0, column=1)
 btn_increase = tk.Button(master=window, text="+", command=increase)
 btn_increase.grid(row=0, column=2, sticky="nsew")
 
-counter=0
-
-
 
 window.mainloop()
