@@ -6,7 +6,7 @@ from tkinter import messagebox
 
 # Function to start the clicking action
 def start_clicking():
-    duration = 10
+    duration = 100
     start_time = time.time()  # Record the start time
     print("Press 'Q' to stop the script early.")
     print(f"The script will run for {duration} seconds.")
@@ -29,7 +29,7 @@ def start_clicking():
                 print("{duration} seconds have passed. Stopping the script.")
                 break
             
-            time.sleep(0.02)  # Adjust to control the speed of clicking
+            time.sleep(0.002)  # Adjust to control the speed of clicking
 
     except KeyboardInterrupt:
         print("Script interrupted manually.")
