@@ -18,7 +18,8 @@ def create_dictionary():
 data=create_dictionary()
 
 # Specify the CSV file name
-csv_file = "output.csv"
+namefile=input("what is name of outputfile: ")
+csv_file = f"{namefile}_output.csv"
 
 # Open the CSV file for writing
 with open(csv_file, mode='w', newline='') as file:
