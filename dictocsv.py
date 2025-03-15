@@ -14,12 +14,8 @@ def create_dictionary():
         print(f"Added: {key}: {value}")
     
     return my_dict
-# Sample dictionary
-data = {
-    "Name": ["Alice", "Bob", "Charlie"],
-    "Age": [25, 30, 35],
-    "City": ["New York", "Los Angeles", "Chicago"]
-}
+#  creat object Sample dictionary
+data=create_dictionary()
 
 # Specify the CSV file name
 csv_file = "output.csv"
@@ -40,6 +36,7 @@ print(f"Data exported to {csv_file} successfully!")
 if __name__ == "__main__":
     dictocsv = create_dictionary()
     print("\nYour final dictionary:")
-    print(my_dict)
+    print(data)
+    
 
 
