@@ -1,10 +1,32 @@
 import sys
 import platform
+import keyboard
+import time
 
 def rotate_windows():
     try:
         import ctypes
         from ctypes import wintypes
+
+        while True: 
+            current_time = time.time()  # Get the current time
+            elapsed_time = current_time - start_time  # Calculate elapsed time
+            
+            # Click at the current mouse position
+            pyautogui.click()
+
+            # Check if 'Q' is pressed
+            if keyboard.is_pressed('q'):
+                print("Stopping the script.")
+                break
+            
+            # Stop the script after the specified duration
+            if elapsed_time >= duration:
+                print("{duration} seconds have passed. Stopping the script.")
+                break
+            
+            time.sleep(0.002)
+
     except ImportError:
         print("This script requires ctypes to run on Windows.")
         return 1
@@ -78,6 +100,7 @@ def rotate_windows():
         return 1
     
 def rotate_linux():
+
     try:
         import subprocess
     except ImportError:
@@ -85,23 +108,42 @@ def rotate_linux():
         return 1
 
     try:
-        # Get connected display name
-        output = subprocess.check_output(['xrandr']).decode()
-        displays = [line.split()[0] for line in output.splitlines() if ' connected' in line]
-        
-        if not displays:
-            print("No connected displays found.")
-            return 1
+        while True: 
+            current_time = time.time()  # Get the current time
+            elapsed_time = current_time - start_time  # Calculate elapsed time
             
-        display = displays[0]
+            # Click at the current mouse position
+            pyautogui.click()
+
+            # Get connected display name
+            output = subprocess.check_output(['xrandr']).decode()
+            displays = [line.split()[0] for line in output.splitlines() if ' connected' in line]
         
-        # Rotate display
-        subprocess.run(
-            ['xrandr', '--output', display, '--rotate', 'left', '--auto'],
-            check=True
-        )
-        print(f"Rotated {display} 90 degrees left.")
-        return 0
+            if not displays:
+                print("No connected displays found.")
+                return 1
+            
+            display = displays[0]
+        
+            # Rotate display
+            subprocess.run(
+                ['xrandr', '--output', display, '--rotate', 'left', '--auto'],
+                check=True
+            )
+            print(f"Rotated {display} 90 degrees left.")
+            # Check if 'Q' is pressed
+            if keyboard.is_pressed('q'):
+                print("Stopping the script.")
+                break
+            
+            # Stop the script after the specified duration
+            if elapsed_time >= duration:
+                print("{duration} seconds have passed. Stopping the script.")
+                break
+            
+            time.sleep(0.002)
+        
+            return 0
     except subprocess.CalledProcessError as e:
         print(f"Error rotating screen: {e}")
         return 1
