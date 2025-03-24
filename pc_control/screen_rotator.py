@@ -2,6 +2,7 @@ import sys
 import platform
 import keyboard
 import time
+import pyautogui
 
 def rotate_windows():
     try:
@@ -9,8 +10,8 @@ def rotate_windows():
         from ctypes import wintypes
 
         while True: 
-            current_time = time.time()  # Get the current time
-            elapsed_time = current_time - start_time  # Calculate elapsed time
+            #current_time = time.time()  # Get the current time
+            #elapsed_time = current_time - start_time  # Calculate elapsed time
             
             # Click at the current mouse position
             pyautogui.click()
@@ -21,11 +22,11 @@ def rotate_windows():
                 break
             
             # Stop the script after the specified duration
-            if elapsed_time >= duration:
-                print("{duration} seconds have passed. Stopping the script.")
-                break
+           # if elapsed_time >= duration:
+                #print("{duration} seconds have passed. Stopping the script.")
+                #break
             
-            time.sleep(0.002)
+            #time.sleep(0.002)
 
     except ImportError:
         print("This script requires ctypes to run on Windows.")
